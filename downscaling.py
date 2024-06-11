@@ -81,6 +81,22 @@ class ResidualLearning(torch.nn.Module):
         x = self.PReLU(x)
         x = self.layer3(x)
         return x
+    
+    
+class ResidualLearning2(torch.nn.Module):
+    def __init__(self):
+        super(ResidualLearning2, self).__init__()
+        self.layer1 = torch.nn.Conv2d(in_channels=1, out_channels=10, kernel_size=3, stride=1,padding=1)
+        self.layer2 = torch.nn.Conv2d(in_channels=10, out_channels=10, kernel_size=3, stride=1,padding=1)
+        self.layer3 = torch.nn.Conv2d(in_channels=10, out_channels=1, kernel_size=3, stride=1,padding=1)
+        self.PReLU = torch.nn.PReLU()
+    def forward(self, x):
+        x = self.layer1(x)
+        x = self.PReLU(x)
+        x = self.layer2(x)
+        x = self.PReLU(x)
+        x = self.layer3(x)
+        return x
 
 
 class DownScale(torch.nn.Module):
